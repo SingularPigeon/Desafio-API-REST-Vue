@@ -1,35 +1,29 @@
-# desfafio-apirest-vue
+# Desafío API REST Vue
 
-This template should help get you started developing with Vue 3 in Vite.
+Aplicar conocimientos del consumo de API’s, construyendo una aplicación de chat, en donde los usuarios se cargan de forma aleatoria de la API RandomUser.me, y cada uno tiene un color específico asignado para sus mensajes. La aplicación está dividida en componentes que gestionan la lógica de usuario, el envío de mensajes y la visualización del chat.
+![](./public/preview-messenger.png)
 
-## Recommended IDE Setup
+## Estructura del Proyecto
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+El proyecto está dividido en tres componentes principales:
 
-## Customize configuration
+`MessengerChat.vue`: El componente principal que contiene la lógica general de la aplicación. Este componente maneja la obtención de usuarios y la gestión de mensajes.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+`UserChat.vue`: Componente que representa la interfaz de usuario para cada participante en el chat. Permite a los usuarios escribir y enviar mensajes.
 
-## Project Setup
+`ChatBoxShow.vue:` Componente que muestra la lista de mensajes enviados por ambos usuarios en el chat.
 
-```sh
-npm install
-```
+### Requisitos
 
-### Compile and Hot-Reload for Development
+- **VueJs**
+- **Axios** para consumo de API
+- **Bootstrap** para diseño de la interfaz
+- **RandomUser.me** API para obtener usuarios
+- **Google Fonts**
 
-```sh
-npm run dev
-```
+---
 
-### Compile and Minify for Production
+### Autores
 
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+- **Desarolladora:[Paloma Rivera](https://github.com/**SingularPigeon)\*\*
+- **Diseño: [Bootcamp Desafío Latam](desafiolatam.com)**

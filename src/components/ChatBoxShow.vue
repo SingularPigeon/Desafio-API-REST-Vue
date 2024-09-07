@@ -10,7 +10,7 @@ export default {
 }
 </script>
 <template>
-  <div class="chat-box-show bg-body-secondary rounded-3 overflow-scroll">
+  <div class="chat-box-show bg-light-subtle rounded-3 overflow-scroll">
     <div
       v-for="(msg, index) in messages"
       :key="index"

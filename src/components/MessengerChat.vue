@@ -11,19 +11,20 @@ export default {
   },
   data() {
     return {
-      userLeft: {},
+      userLeft: {}, // indentificacion de usuario para su ubicación en el HTML de la app
       userRight: {},
       messages: [],
-      userLeftColor: '#adf6ec', // Color para el usuario izquierdo
-      userRightColor: '#d6f6ad' // Color para el usuario derecho
+      userLeftColor: '#efedf1', // Color de fondo para el usuario izquierdo
+      userRightColor: '#edf1ef ' // Color de fondo para el usuario derecho
     }
   },
   async created() {
+    const userService = new UserService() // creación de nueva instancia de UserService
     try {
-      const users = await UserService.fetchUsers()
+      const users = await userService.fetchUsers()
 
-      this.userLeft = { ...users[0], side: 'left' }
-      this.userRight = { ...users[1], side: 'right' }
+      this.userLeft = { ...users[0], side: 'left' } // asignación del primer usuario obtenido a la izquierda
+      this.userRight = { ...users[1], side: 'right' } // asignación del segundo  usuario obtenido a la derecha
     } catch (error) {
       console.error('Error en la captura de usuarios:', error)
     }

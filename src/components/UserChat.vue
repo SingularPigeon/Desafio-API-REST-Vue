@@ -11,7 +11,7 @@ export default {
     }
   },
   methods: {
-    handleSendMessage() {
+    sendMessage() {
       if (this.message.trim()) {
         this.$emit('enviar-mensaje', {
           message: this.message.trim(),
@@ -33,10 +33,14 @@ export default {
         {{ user.name.first }} {{ user.name.last }}
       </h5>
       <div class="form-floating mb-3">
-        <textarea class="form-control textarea-height overflow-auto" v-model="message"></textarea>
+        <textarea
+          class="form-control textarea-height overflow-auto"
+          v-model="message"
+          @keyup.enter="sendMessage"
+        ></textarea>
       </div>
       <div class="d-grid">
-        <button class="btn bg-success-subtle" @click="handleSendMessage">Send</button>
+        <button class="btn bg-success-subtle" @click="sendMessage">Send</button>
       </div>
     </div>
   </div>
