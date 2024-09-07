@@ -11,49 +11,52 @@ export default {
   },
   data() {
     return {
-      userLeft: null,
-      userRight: null,
-      messages: []
+      userLeft: {},
+      userRight: {},
+      messages: [],
+      userLeftColor: '#adf6ec', // Color para el usuario izquierdo
+      userRightColor: '#d6f6ad' // Color para el usuario derecho
+    }
+  },
+  async created() {
+    try {
+      const url = 'https://randomuser.me/api/?results=2'
+      const { data } = await axios.get(url)
+
+      this.userLeft = { ...data.results[0], side: 'left' }
+      this.userRight = { ...data.results[1], side: 'right' }
+    } catch (error) {
+      console.error(error)
     }
   },
   methods: {
-    async getUsers() {
-      try {
-        const url = 'https://randomuser.me/api/?results=2'
-        const { data } = await axios.get(url)
-
-        if (data.results.length === 2) {
-          this.userLeft = { ...data.results[0], newmessage: '' }
-          this.userRight = { ...data.results[1], newmessage: '' }
-        } else {
-          console.error('Error fetching users: Expected 2 users')
-        }
-      } catch (error) {
-        console.error(error)
-      }
-    },
-    handleSendMessage(message) {
-      this.messages.push(message)
+    ShowSendMessage({ message, color, name, side }) {
+      this.messages.push({ message, color, name, side })
     }
-  },
-  created() {
-    this.getUsers()
   }
 }
 </script>
-
 <template>
-  <div class="messenger-box">
-    <UserChat :userLeft="userLeft" @send-message="handleSendMessage" />
-    <ChatBoxShow :messages="messages" />
-    <UserChat :userRight="userRight" @send-message="handleSendMessage" />
+  <div class="chat-app-container container">
+    <h1>Messenger Chat</h1>
+    <div class="row">
+      <UserChat
+        v-if="Object.keys(userLeft).length > 0"
+        :user="userLeft"
+        :messageColor="userLeftColor"
+        @enviar-mensaje="ShowSendMessage"
+        class="col-4"
+      />
+      <ChatBoxShow class="col-4" :messages="messages" />
+      <UserChat
+        v-if="Object.keys(userRight).length > 0"
+        :user="userRight"
+        :messageColor="userRightColor"
+        @enviar-mensaje="ShowSendMessage"
+        class="col-4"
+      />
+    </div>
   </div>
 </template>
 
-<style scoped>
-.messenger-box {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-</style>
+<style scoped></style>

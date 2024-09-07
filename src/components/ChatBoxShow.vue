@@ -1,18 +1,17 @@
 <template>
-  <div class="chat-box">
-    <div v-for="(message, index) in messages" :key="index" class="message">
+  <div class="chat-box-show">
+    <div v-for="(msg, index) in messages" :key="index" class="message">
       <div class="user-info">
-        <img :src="message.user.picture.thumbnail" :alt="message.user.login.username" />
-        <strong>{{ message.user.login.username }}</strong>
+        <strong>{{ msg.name }}</strong>
       </div>
-      <p class="message-text">{{ message.text }}</p>
+      <p class="message-text" :style="{ backgroundColor: msg.color }">{{ msg.message }}</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ChatBox',
+  name: 'ChatBoxShow',
   props: {
     messages: {
       type: Array,

@@ -2,7 +2,7 @@
 import MessengerChat from './components/MessengerChat.vue'
 </script>
 <template>
-  <div class="container">
+  <div class="container bg-body-tertiary">
     <MessengerChat />
   </div>
 </template>
