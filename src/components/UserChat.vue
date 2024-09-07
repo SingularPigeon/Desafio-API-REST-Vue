@@ -32,8 +32,12 @@ export default {
       <h5 class="my-3 bg-info-subtle p-2 rounded-4 fw-bold">
         {{ user.name.first }} {{ user.name.last }}
       </h5>
-      <textarea class="form-control textarea-height" v-model="message"></textarea>
-      <button class="btn btn-success" @click="handleSendMessage">Send</button>
+      <div class="form-floating mb-3">
+        <textarea class="form-control textarea-height overflow-auto" v-model="message"></textarea>
+      </div>
+      <div class="d-grid">
+        <button class="btn bg-success-subtle" @click="handleSendMessage">Send</button>
+      </div>
     </div>
   </div>
 </template>

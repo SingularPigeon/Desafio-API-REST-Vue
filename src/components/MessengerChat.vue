@@ -1,5 +1,5 @@
 <script>
-import axios from 'axios'
+import UserService from '@/services/UserService'
 import UserChat from '@/components/UserChat.vue'
 import ChatBoxShow from '@/components/ChatBoxShow.vue'
 
@@ -20,13 +20,12 @@ export default {
   },
   async created() {
     try {
-      const url = 'https://randomuser.me/api/?results=2'
-      const { data } = await axios.get(url)
+      const users = await UserService.fetchUsers()
 
-      this.userLeft = { ...data.results[0], side: 'left' }
-      this.userRight = { ...data.results[1], side: 'right' }
+      this.userLeft = { ...users[0], side: 'left' }
+      this.userRight = { ...users[1], side: 'right' }
     } catch (error) {
-      console.error(error)
+      console.error('Error en la captura de usuarios:', error)
     }
   },
   methods: {
@@ -37,9 +36,9 @@ export default {
 }
 </script>
 <template>
-  <div class="chat-app-container container">
-    <h1>Messenger Chat</h1>
-    <div class="row">
+  <div class="container pb-5">
+    <h1 class="fw-bold text-center my-5 pt-5">Messenger Chat</h1>
+    <div class="row align-items-start">
       <UserChat
         v-if="Object.keys(userLeft).length > 0"
         :user="userLeft"
